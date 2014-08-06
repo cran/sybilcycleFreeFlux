@@ -52,7 +52,7 @@ Starts by calculating warm up points
 
 \seealso{
 \code{\link{modelorg}}
-\code{\link{lrFBA}}
+\code{\link{cfFBA}}
 }
 \examples{
 \dontrun{

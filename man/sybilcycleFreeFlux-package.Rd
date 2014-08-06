@@ -24,5 +24,5 @@ Depends: \tab \code{\link{sybil}}, methods\cr
 \keyword{ package }
 \seealso{
 	\code{\link{sybil}} 
-	\code{\link{lrFBA}} 
+	\code{\link{cfFBA}} 
 }

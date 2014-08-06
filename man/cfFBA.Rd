@@ -1,5 +1,7 @@
-\name{lrFBA}
+\name{cfFBA}
+\alias{cfFBA}
 \alias{lrFBA}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 cycle free flux
@@ -8,9 +10,9 @@ cycle free flux
 finds a cycle free flux distribution given a flux distribution and a network model.
 }
 \usage{
-lrFBA(model, wtflux, objVal = NA, fixExchRxn = TRUE, excReactPos = NULL, 
+cfFBA(model, wtflux, objVal = NA, fixExchRxn = TRUE, excReactPos = NULL, 
 lpdir = SYBIL_SETTINGS("OPT_DIRECTION"), solver = SYBIL_SETTINGS("SOLVER"),
- method = SYBIL_SETTINGS("METHOD"), verboseMode = 2)
+ method = SYBIL_SETTINGS("METHOD"), verboseMode = 2, retOptSol=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -50,6 +52,11 @@ Single character value.  The solver to use.  See
   \item{verboseMode}{
 level of displaying messages.
 }
+  \item{retOptSol}{
+If set to \code{TRUE}, the function returns an object of class \code{\linkS4class{optsol_optimizeProb}}, otherwise a list.
+}
+
+
 }
 
 \value{
@@ -69,8 +76,8 @@ fluxes that are free of cycles.
 data(iAF1260)
 model=iAF1260
 fba=optimizeProb(model)
-lrfba=lrFBA(model,wtflux=getFluxDist(fba),objVal=lp_obj(fba))
-llflx=lrfba$fluxes
+cfopt=cfFBA(model,wtflux=getFluxDist(fba),objVal=lp_obj(fba), retOptSol=FALSE)
+llflx=cfopt$fluxes
 flx=getFluxDist(fba)
 \dontrun{
 layout(matrix(c(1,2,3,1,2,3), 2, 3, byrow = TRUE))
@@ -79,7 +86,7 @@ hist(log10(abs(llflx[abs(llflx-flx)>1e-3])),main="after removing loops",col="ora
 hist(log10(abs(flx[abs(llflx-flx)<1e-3])),main="fluxes not in loops",col="lightgreen")
 }
 ## The function is currently defined as
-"lrFBA"
+"cfFBA"
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

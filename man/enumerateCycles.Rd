@@ -38,7 +38,7 @@ return a list of unique loops found in the model.
 
 \seealso{
 \code{\link{modelorg}}
-\code{\link{lrFBA}}
+\code{\link{cfFBA}}
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----

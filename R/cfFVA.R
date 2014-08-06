@@ -1,4 +1,4 @@
-lrFVA <- function(model,rxnList,solver = SYBIL_SETTINGS("SOLVER") ){
+cfFVA <- function(model,rxnList,solver = SYBIL_SETTINGS("SOLVER") ){
 	#when a loop exists set rxn(s) of no essential flux to 0: except rxn to be maximized 
 	# if more than one rxn can be a problem!!!
 	## send obj value to lrFBA
@@ -69,10 +69,10 @@ for (rxn in rxnList){
 		#print(getObjDir(prob))
 		if(abs(F1[sn])>1e-7){
 			if(!(sn %in% excReactPos)){#send xchng rxn list to avoid recalc.
-					solNL=lrFBA(model,wtflux=F1,excReactPos=excReactPos,solver=solver,objVal=objVal);	
+					solNL=cfFBA(model,wtflux=F1,excReactPos=excReactPos,solver=solver,objVal=objVal,retOptSol=FALSE);	
 			}else{#fix exchange except one rxn
 			        excReactPos1=excReactPos[-which(sn %in% excReactPos)]
-					solNL=lrFBA(model,wtflux=F1,excReactPos=excReactPos1,fixExchRxn=TRUE,solver=solver,objVal=objVal);	
+					solNL=cfFBA(model,wtflux=F1,excReactPos=excReactPos1,fixExchRxn=TRUE,solver=solver,objVal=objVal,retOptSol=FALSE);	
 			}
 			F2=solNL$fluxes;#F2 represents F1 without loops
 		}else{F2=F1}
@@ -82,10 +82,10 @@ for (rxn in rxnList){
 			print(c("diff:" , F1[sn],F2[sn])) ;
 			#lowbnd(model)[sn]=F1[sn];	uppbnd(model)[sn]=F1[sn]; # Force rxn to go with max flux to identify loop
 			if(!(sn %in% excReactPos)){#fix rxn sn
-			         sol1L=lrFBA(model,wtflux=F1,fixExchRxn=TRUE,excReactPos=c(sn,excReactPos),solver=solver,objVal=objVal);
+			         sol1L=cfFBA(model,wtflux=F1,fixExchRxn=TRUE,excReactPos=c(sn,excReactPos),solver=solver,objVal=objVal,retOptSol=FALSE);
 			}else{
 					excReactPos1=excReactPos[-which(sn %in% excReactPos)]
-					sol1L=lrFBA(model,F1,excReactPos=excReactPos1,solver=solver,objVal=objVal);
+					sol1L=cfFBA(model,F1,excReactPos=excReactPos1,solver=solver,objVal=objVal,retOptSol=FALSE);
 			}
 			print(c("sol 3:",sol1L$stat,sol1L$obj));
 			F3=sol1L$fluxes#[sol1L$fldind];Only one Loop

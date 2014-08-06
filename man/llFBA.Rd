@@ -54,7 +54,7 @@ Schellenberger J, Lewis NE, Palsson BO (2011) Elimination of thermodynamically i
 
 \seealso{
 \code{\link{modelorg}}
-\code{\link{lrFBA}}
+\code{\link{cfFBA}}
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----

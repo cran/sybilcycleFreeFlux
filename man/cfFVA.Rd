@@ -1,15 +1,17 @@
-\name{lrFVA}
+\name{cfFVA}
+\alias{cfFVA}
 \alias{lrFVA}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 cycle free flux variability
 }
 \description{
-finds flux variability without loops. Maximize individual reactions and test if loop exists using \code{\link{lrFBA}}.
+finds flux variability without loops. Maximize individual reactions and test if loop exists using \code{\link{cfFBA}}.
 Then breaks the loop by setting the fluxes that goes to zero in loopless flux to zero.
 }
 \usage{
-lrFVA(model, rxnList, solver = SYBIL_SETTINGS("SOLVER"))
+cfFVA(model, rxnList, solver = SYBIL_SETTINGS("SOLVER"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,7 +40,7 @@ If a reaction is involved in a loop it will appear at least twice in the second 
 
 \seealso{
 \code{\link{modelorg}}
-\code{\link{lrFBA}}
+\code{\link{cfFBA}}
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
@@ -48,13 +50,13 @@ library(sybilcycleFreeFlux)
 data(Ec_core)
 model=Ec_core
 
-fva=lrFVA(model,react_id(model))
-write.csv(file="lrFVA1_cnd_res.csv",fva[[1]]);
-write.csv(file="lrFVA1_cnd_det.csv",fva[[2]]);
+fva=cfFVA(model,react_id(model))
+write.csv(file="cfFVA1_cnd_res.csv",fva[[1]]);
+write.csv(file="cfFVA1_cnd_det.csv",fva[[2]]);
 #plot fluxes
 
 ## The function is currently defined as
-"lrFVA"
+"cfFVA"
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

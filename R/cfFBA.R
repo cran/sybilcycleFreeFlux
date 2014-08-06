@@ -1,4 +1,4 @@
-lrFBA <- function(model
+cfFBA <- function(model
 ,wtflux  # initial flux distribution when wtflux is NA don't include its constraint 
 	,objVal = NA #min objval
 	,fixExchRxn=TRUE
@@ -8,6 +8,9 @@ lrFBA <- function(model
          ,method = SYBIL_SETTINGS("METHOD")
         # ,solverParm=data.frame(CPX_PARAM_EPRHS=1e-7)
 		,verboseMode = 2
+######### ADDED BY GABRIEL ###############
+		,retOptSol = TRUE
+##########################################
 ) {
 # fix the direction of rxn, are not allowed to increase 
 # minimize abs(flux)
@@ -80,14 +83,56 @@ ub[bmrxn]=objVal;
 # 
  #--------------Output-------------------------
 
+#        optsol <- list(ok = sol$ok,
+#	                       obj = sol$obj,
+#	                       stat =sol$stat,
+#	                       fluxes = sol$fluxes,
+#	                       wtflx=wtflux,
+#	                       lb=lb,
+#	                       ub=ub,
+#	                       ocf=ocf
+#	                  )	    
+
+
+
+######### ADDED BY GABRIEL ###############
+if (isTRUE(retOptSol)) {
+            optsol <- new("optsol_optimizeProb",
+                          mod_id       = mod_id(model),
+                          mod_key      = mod_key(model),
+                          solver       = solver(prob),
+                          method       = method(prob),
+                          algorithm    = algorithm(mod),
+                          num_of_prob  = 1L,
+                          lp_dir       = factor(getObjDir(prob)),
+                          lp_num_rows  = nr(mod),
+                          lp_num_cols  = nc(mod),
+                          lp_ok        = as.integer(sol[["ok"]]),
+                          lp_obj       = sol[["obj"]],
+                          lp_stat      = as.integer(sol[["stat"]]),
+                          obj_coef     = ocf,
+                          obj_func     = printObjFunc(model),
+                          fldind       = fldind(mod),
+                          fluxdist     = fluxDistribution(fluxes = sol[["fluxes"]],
+                                                    nrow = length(sol[["fluxes"]]),
+                                                    ncol = 1L),
+                          alg_par      = alg_par(mod))
+ 
+}
+else{
         optsol <- list(ok = sol$ok,
-	                       obj = sol$obj,
-	                       stat =sol$stat,
-	                       fluxes = sol$fluxes,
-	                       wtflx=wtflux,
-	                       lb=lb,
-	                       ub=ub,
-	                       ocf=ocf
+	                   obj = sol$obj,
+	                   stat =sol$stat,
+	                   fluxes = sol$fluxes,
+	                   wtflx=wtflux,
+	                   lb=lb,
+	                   ub=ub,
+	                   ocf=ocf
 	                  )	    
+
+}
+##########################################
+
+
     return(optsol)        
     }
