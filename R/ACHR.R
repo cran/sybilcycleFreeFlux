@@ -32,7 +32,7 @@ for( i in (1:floor(W/2))){
                 ocf = rep(0,nRxns);
                 ocf[i] = 1;
             }  else{            # Create random objective function
-    		    ocf = runif(nRxns)-0.5;
+    		    ocf = stats::runif(nRxns)-0.5;
                 }
       changeObjCoefs(problem(lpmod),c(1:nRxns),ocf);
       

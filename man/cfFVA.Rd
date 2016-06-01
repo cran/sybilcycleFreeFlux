@@ -11,7 +11,11 @@ finds flux variability without loops. Maximize individual reactions and test if 
 Then breaks the loop by setting the fluxes that goes to zero in loopless flux to zero.
 }
 \usage{
-cfFVA(model, rxnList, solver = SYBIL_SETTINGS("SOLVER"))
+cfFVA(model, rxnList, solver = SYBIL_SETTINGS("SOLVER"),pct_objective=100
+				  ,solverParm=NA
+				  ,verboseMode = 2,includeRxnEqn=TRUE
+				  ,boundFlg=FALSE  
+	)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,6 +30,21 @@ Single character value.  The solver to use.  See
     \code{\link{SYBIL_SETTINGS}} for possible values.\cr
     Default: \code{SYBIL_SETTINGS("SOLVER")}.
 
+}
+ \item{pct_objective}{
+	percentage of maximum biomass to be achieved.
+}
+\item{solverParm}{
+	extra parameters to solver, like tolerance.
+}
+\item{includeRxnEqn}{
+	when true (default) the reaction equation is returned.
+}
+ \item{verboseMode}{
+level of displaying messages.
+}
+\item{boundFlg}{
+ should be set to FALSE to enumrateCycles.
 }
 }
 

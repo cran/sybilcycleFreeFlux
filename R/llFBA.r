@@ -191,19 +191,19 @@ print("Building the problem...");
             # ----------------------- #
            "cplexAPI" = {
                 out <- vector(mode = "list", length = 3)
-		prob <- openProbCPLEX()
-		setIntParmCPLEX(prob$env, CPX_PARAM_SCRIND, CPX_OFF)
+		prob <- cplexAPI::openProbCPLEX()
+		cplexAPI::setIntParmCPLEX(prob$env, cplexAPI::CPX_PARAM_SCRIND, cplexAPI::CPX_OFF)
 		                
-                chgProbNameCPLEX(prob$env, prob$lp, "llFBA cplex");
+                cplexAPI::chgProbNameCPLEX(prob$env, prob$lp, "llFBA cplex");
                 
                 rtype <- c(rep("E", nr+Nintc), rep("L", 4*ng))
                 #rtype <- c(rep("E",nr+1), rep("L", 2*nIrrev+4*nRev  ))
                 
 
-                out[[1]] <- newRowsCPLEX(prob$env, prob$lp,
+                out[[1]] <- cplexAPI::newRowsCPLEX(prob$env, prob$lp,
                                          nrows=nRows, rhs=rupper, sense=rtype)
 
-                out[[2]] <- newColsCPLEX(prob$env, prob$lp,
+                out[[2]] <- cplexAPI::newColsCPLEX(prob$env, prob$lp,
                                          nCols , obj=cobj, lb=lower, ub=upper,cnames=cNames)
 
                 print("Calc nzLHS");
@@ -221,24 +221,24 @@ print("Building the problem...");
                                    ra  = TMPmat@x);
 				
   		ctype<-c(rep('C', nc+ng), rep('B',ng ));
-		status = copyColTypeCPLEX (prob$env, prob$lp, ctype);
-		check <- setObjDirCPLEX(prob$env, prob$lp, CPX_MAX);# should use same as lpdir
+		status = cplexAPI::copyColTypeCPLEX (prob$env, prob$lp, ctype);
+		check <- cplexAPI::setObjDirCPLEX(prob$env, prob$lp, cplexAPI::CPX_MAX);# should use same as lpdir
 		
                 if (verboseMode > 2) {                      
                       fname=format(Sys.time(), "Cplex_llFBA_%Y%m%d_%H%M.lp");
 			 print(sprintf("Writing problem to file: %s/%s  ...",getwd(),fname));
-			writeProbCPLEX(prob$env, prob$lp, fname);
+			cplexAPI::writeProbCPLEX(prob$env, prob$lp, fname);
 		      
 		       print("Solving...");
 		       }
-	       lp_ok     <- mipoptCPLEX(prob$env, prob$lp);
+	       lp_ok     <- cplexAPI::mipoptCPLEX(prob$env, prob$lp);
 	       print(lp_ok);
-	       sol=solutionCPLEX(prob$env, prob$lp);
+	       sol=cplexAPI::solutionCPLEX(prob$env, prob$lp);
 	       
                if (verboseMode > 3) {print(sol);}	
                
                lp_obj=sol$objval;
-               lp_stat   <- getStatCPLEX(prob$env, prob$lp)
+               lp_stat   <- cplexAPI::getStatCPLEX(prob$env, prob$lp)
               
                 #colst=sol$x;
                 
@@ -263,7 +263,7 @@ print("Building the problem...");
                  #                        nrows=nRows, rhs=rupper, sense=rtype)
 				 #out[[1]] <- addRowsToProb(prob,nRows,type=rtype,lb=,ub=rupper,)
 
-                out[[2]] <- newColsCPLEX(prob$env, prob$lp,
+                out[[2]] <- cplexAPI::newColsCPLEX(prob$env, prob$lp,
                                          nCols , obj=cobj, lb=lower, ub=upper,cnames=cNames)
 
                 print("Calc nzLHS");
@@ -281,24 +281,24 @@ print("Building the problem...");
                                    ra  = TMPmat@x);
 				
   		ctype<-c(rep('C', nc+ng), rep('B',ng ));
-		status = copyColTypeCPLEX (prob$env, prob$lp, ctype);
-		check <- setObjDirCPLEX(prob$env, prob$lp, CPX_MAX);# should use same as lpdir
+		status = cplexAPI::copyColTypeCPLEX (prob$env, prob$lp, ctype);
+		check <- cplexAPI::setObjDirCPLEX(prob$env, prob$lp, cplexAPI::CPX_MAX);# should use same as lpdir
 		
                 if (verboseMode > 2) {                      
                       fname=format(Sys.time(), "Cplex_llFBA_%Y%m%d_%H%M.lp");
 			 print(sprintf("Writing problem to file: %s/%s  ...",getwd(),fname));
-			writeProbCPLEX(prob$env, prob$lp, fname);
+			cplexAPI::writeProbCPLEX(prob$env, prob$lp, fname);
 		      
 		       print("Solving...");
 		       }
-	       lp_ok     <- mipoptCPLEX(prob$env, prob$lp);
+	       lp_ok     <- cplexAPI::mipoptCPLEX(prob$env, prob$lp);
 	       print(lp_ok);
-	       sol=solutionCPLEX(prob$env, prob$lp);
+	       sol=cplexAPI::solutionCPLEX(prob$env, prob$lp);
 	       
                if (verboseMode > 3) {print(sol);}	
                
                lp_obj=sol$objval;
-               lp_stat   <- getStatCPLEX(prob$env, prob$lp)
+               lp_stat   <- cplexAPI::getStatCPLEX(prob$env, prob$lp)
               
                 #colst=sol$x;
                 

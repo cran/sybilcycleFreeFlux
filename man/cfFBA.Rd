@@ -10,9 +10,18 @@ cycle free flux
 finds a cycle free flux distribution given a flux distribution and a network model.
 }
 \usage{
-cfFBA(model, wtflux, objVal = NA, fixExchRxn = TRUE, excReactPos = NULL, 
-lpdir = SYBIL_SETTINGS("OPT_DIRECTION"), solver = SYBIL_SETTINGS("SOLVER"),
- method = SYBIL_SETTINGS("METHOD"), verboseMode = 2, retOptSol=TRUE)
+cfFBA(model, wtflux, objVal = NA #min objval
+	,fixExchRxn=TRUE
+	,excReactPos=NULL
+	 ,lpdir = SYBIL_SETTINGS("OPT_DIRECTION")
+	 ,solver = SYBIL_SETTINGS("SOLVER")
+         ,method = SYBIL_SETTINGS("METHOD")
+		 ,tol=SYBIL_SETTINGS("TOLERANCE")
+         ,solverParm=NA
+		,verboseMode = 2
+		,safeBounds=FALSE # 
+######### ADDED BY GABRIEL ###############
+		,retOptSol = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -48,7 +57,15 @@ Single character value.  The solver to use.  See
     possible values.\cr
     Default: \code{LP_METHOD(SYBIL_SETTINGS)}.
 }
- 
+ \item{solverParm}{
+ additional parameters to the solver
+ }
+ \item{tol}{
+ tolerance of resulting solution
+ }
+ \item{safeBounds}{
+ can be used to deal with false infeasibility state returned by solvers
+ }
   \item{verboseMode}{
 level of displaying messages.
 }

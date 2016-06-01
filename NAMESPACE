@@ -1,12 +1,15 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
 
-# Export all names
-exportPattern(".")
+import(methods)
+import(Matrix)
+import(sybil)
+import(MASS)
 
-# Import all packages listed as Imports or Depends
-import(
-  sybil,
-  Matrix,
-  MASS
-)
+importFrom("stats", "runif")
+importFrom("utils", "write.csv")
+
+export(cfFBA)
+export(cfFVA)
+export(llFBA)
+export(ACHR)
+export(enumerateCycles)
+export(getModel_WW)
