@@ -63,12 +63,10 @@ Schellenberger J, Lewis NE, Palsson BO (2011) Elimination of thermodynamically i
 library(sybilcycleFreeFlux)
 data(Ec_core)
 model=Ec_core
-llFBA(model,solver="glpkAPI",verbose=3)
+llFBA(model,solver="glpkAPI",verbose=2)
 
 ## The function is currently defined as
 "llFBA"
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,5 +1,11 @@
 sybilcycleFreeFlux Version History
 # ------------------------------------------------------- #
+Version 2.0.1    2019-12-15
+# ------------------------------------------------------- #
+- Fixed problem in non-standard note
+- Added CycleFreeFlux reference
+
+# ------------------------------------------------------- #
 Version 2.0.0    2016-05-30
 # ------------------------------------------------------- #
 - compatible with new sybil

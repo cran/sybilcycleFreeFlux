@@ -70,8 +70,8 @@ data(Ec_core)
 model=Ec_core
 
 fva=cfFVA(model,react_id(model))
-write.csv(file="cfFVA1_cnd_res.csv",fva[[1]]);
-write.csv(file="cfFVA1_cnd_det.csv",fva[[2]]);
+#write.csv(file="cfFVA1_cnd_res.csv",fva[[1]]);
+#write.csv(file="cfFVA1_cnd_det.csv",fva[[2]]);
 #plot fluxes
 
 ## The function is currently defined as

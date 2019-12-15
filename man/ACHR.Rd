@@ -77,8 +77,8 @@ pnts=s1$Points
 fvamin=apply(pnts,1,min)
 fvamax=apply(pnts,1,max)
 
-write.csv(file="fva.csv",cbind(fva_min,fvamin,fva_max,fvamax,lb=lowbnd(model),
-ub=uppbnd(model)))
+#write.csv(file="fva.csv",cbind(fva_min,fvamin,fva_max,fvamax,lb=lowbnd(model),
+#ub=uppbnd(model)))
 #####Plot samples
 bmrxn=which(obj_coef(model)==1)
 bmrow=S(model)[bmrxn,]
@@ -97,8 +97,8 @@ for(i in 1:nPnts){
 llfvamin=apply(llpnts,1,min)
 llfvamax=apply(llpnts,1,max)
 
- write.csv(file="objv.csv",objvals)
-write.csv(file="llfva.csv",cbind(fva_min,llmin=llfvamin,fva_max,llmax=llfvamax,fvamin,
+ #write.csv(file="objv.csv",objvals)
+#write.csv(file="llfva.csv",cbind(fva_min,llmin=llfvamin,fva_max,llmax=llfvamax,fvamin,
 fvamax,lb=lowbnd(model),ub=uppbnd(model)))
 nloopflux=NULL
 loopflxll=NULL

@@ -83,6 +83,11 @@ fluxes that are free of cycles.
 
 \author{Abdelmoneim Amer Desouki}
 
+\references{
+ Desouki, Abdelmoneim Amer, et al. "CycleFreeFlux: efficient removal of thermodynamically infeasible loops from flux distributions."
+ Bioinformatics 31.13 (2015): 2159-2165.
+}
+
 \seealso{
 \code{\link{modelorg}}
 }
